@@ -1,0 +1,19 @@
+cat <<EOL > .gitignore
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.env
+
+# IDE folders
+.vscode/
+
+# System files
+.DS_Store
+
+# Logs
+*.log
+EOL
+.DS_Store
