@@ -1,0 +1,9 @@
+Cricket is a popular bat-and-ball sport played between two teams of eleven players.
+Originating in England, it has become a global phenomenon, especially in countries like India, 
+Australia, and England. The game is played in various formats, including Test matches, One Day
+Internationals (ODIs), and Twenty20 (T20) games. Each team takes turns batting 
+and bowling, aiming to score more runs than the opponent. Cricket demands a mix of 
+strategy, skill, and teamwork. Iconic players like Sachin Tendulkar, Virat Kohli, 
+and M.S. Dhoni have left lasting legacies. With passionate fans and thrilling
+matches, cricket continues to unite and excite people worldwide.
+
