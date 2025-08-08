@@ -10,12 +10,11 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from dotenv import load_dotenv
 load_dotenv()
 
-
 model = ChatGoogleGenerativeAI(
     model = 'gemini-2.5-flash'
 )
 
-loader = PyPDFLoader('problem statement.pdf')
+loader = PyPDFLoader('bajaj.pdf')
 docs = loader.load()
 
 splitter = RecursiveCharacterTextSplitter(
@@ -32,12 +31,9 @@ vectorstore.persist()
 
 parser = StrOutputParser()
 
-user_query = input('Enter your query: ')
-retrieved_docs = vectorstore.similarity_search(user_query, k=3)
-
 prompt = PromptTemplate(
     template='''
-        You are an helpful AI assistant.Please asnwer the following question based ont he given context..here is the context ->
+        You are an helpful AI assistant.Please asnwer the followings..here is the context ->
         {context} and here is the query -> {user_query}
     ''',
     input_variables= ['context' , 'user_query']
@@ -45,10 +41,11 @@ prompt = PromptTemplate(
 
 chain = prompt | model | parser
 
-response = chain.invoke({'context' : retrieved_docs , 'user_query' : user_query})
-print(response)
-
-
-
-
-
+while True:
+    user_query = input("Enter your query (or type 'exit' to quit): ")
+    if user_query.lower() == 'exit':
+        break
+    retrieved_docs = vectorstore.similarity_search(user_query, k=3)
+    context = "\n\n".join([doc.page_content for doc in retrieved_docs])
+    response = chain.invoke({'context': context, 'user_query': user_query})
+    print("\nAnswer:\n", response, "\n")
